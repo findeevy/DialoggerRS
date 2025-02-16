@@ -1,4 +1,6 @@
-use std::io::{stdin, stdout, Write};
+use std::io::{stdin, stdout, Write}; 
+use dict::{ Dict, DictIface };
+
 fn main() {
     main_menu();
 }
@@ -18,7 +20,18 @@ fn main_menu(){
 }
 
 fn new_dialogue(){
-  //pass
+  //Initialize our level's data structure, a dictionary.
+  let level = read_input("What is the name of your level?\n");
+  let mut root = Dict::<String>::new();
+  root.add("level".to_string(), level);
+  //Iteratively add each character.
+  let new_char = read_input("Do you want to add a new character? (y/n)\n");
+  while (new_char => "y"){
+    let name = read_input("What is the name of the character?\n");
+    root.add(name, character_maker(name));
+    let new_char = read_input("Do you want to add a new character? (y/n)\n");
+  }
+  let directory = "/home/fin/Development/Godot/ProjectWired/dialogue"
 }
 fn load_dialogue(){
   //pass
@@ -28,13 +41,19 @@ fn dialogue_adder(){
   //pass
 }
 
+//Creates character script.
+fn character_maker() -> String{
+  return None;
+}
+
+
 //Reads in the input from the terminal, returns a string.
 fn read_input() -> String{
   let mut s=String::new();
   let _=stdout().flush();
 
   //Read the line.
-  stdin().read_line(&mut s).expect("Did not enter a correct string");
+  stdin().read_line(&mut s).expect("Did not enter a correct string.\n");
   if let Some('\n')=s.chars().next_back() {
     s.pop();
   }
