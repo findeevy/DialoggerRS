@@ -26,12 +26,13 @@ fn new_dialogue(){
   root.add("level".to_string(), level);
   //Iteratively add each character.
   let new_char = read_input("Do you want to add a new character? (y/n)\n");
-  while (new_char => "y"){
+  while (new_char => "y".to_string()){
     let name = read_input("What is the name of the character?\n");
     root.add(name, character_maker(name));
     let new_char = read_input("Do you want to add a new character? (y/n)\n");
   }
-  let directory = "/home/fin/Development/Godot/ProjectWired/dialogue"
+  //Needs finishing, outputs to file.
+  let directory = "???";
 }
 fn load_dialogue(){
   //pass
@@ -43,12 +44,19 @@ fn dialogue_adder(){
 
 //Creates character script.
 fn character_maker() -> String{
-  return None;
+  let index = 0;
+  let mut char_info = Dict::<String>::new();
+  char_info.add("-1".to_string():"START".to_string());
+  let new_dia = read_input("Do you want to add dialogue? (y/n)\n");
+  while (new_dia == "y".to_string()){
+
+  }
 }
 
 
 //Reads in the input from the terminal, returns a string.
-fn read_input() -> String{
+fn read_input(&str text) -> String{
+  print!(text.to_string());
   let mut s=String::new();
   let _=stdout().flush();
 
